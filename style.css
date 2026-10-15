@@ -1,0 +1,223 @@
+** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at center, #1e3a5f 0%, #0a1118 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Fundo Cintilante / Estrelas Dinâmicas */
+.glitter-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px #48cae4, 0 0 20px #ff69b4; }
+}
+
+/* Telas (Navegação) */
+.screen {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: scale(0.95);
+    z-index: 2;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/* Cards com estilo Glassmorphism, Azul Jeans e Barbie Pink */
+.card {
+    background: rgba(0, 119, 182, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 2px solid rgba(72, 202, 228, 0.4);
+    border-radius: 24px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 119, 182, 0.4), inset 0 0 20px rgba(255, 105, 180, 0.2);
+}
+
+/* Animação do Avatar da Barbie acenando */
+.barbie-avatar-container {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.barbie-svg {
+    width: 150px;
+    height: 150px;
+    filter: drop-shadow(0 0 12px rgba(72, 202, 228, 0.7));
+}
+
+@keyframes wave {
+    0% { transform: rotate(0deg); transform-origin: bottom left; }
+    20% { transform: rotate(18deg); transform-origin: bottom left; }
+    40% { transform: rotate(-8deg); transform-origin: bottom left; }
+    60% { transform: rotate(14deg); transform-origin: bottom left; }
+    80% { transform: rotate(-4deg); transform-origin: bottom left; }
+    100% { transform: rotate(0deg); transform-origin: bottom left; }
+}
+
+.waving-arm {
+    animation: wave 1.8s infinite ease-in-out;
+}
+
+/* Tipografia */
+h1, h2 {
+    color: #ff69b4;
+    text-shadow: 0 0 10px #ff1493, 0 0 20px #48cae4;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #e0f7fa;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    color: #90e0ef;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(10, 25, 40, 0.7);
+    border: 1px solid #48cae4;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 5px rgba(72, 202, 228, 0.3);
+}
+
+input:focus {
+    border-color: #ff69b4;
+    box-shadow: 0 0 12px #ff69b4, inset 0 0 5px #48cae4;
+}
+
+/* Botões Neon Estilo Barbie */
+.neon-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff1493, 0 0 30px rgba(72, 202, 228, 0.5);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+
+.neon-btn:hover {
+    background: linear-gradient(135deg, #ff69b4, #0077b6);
+    box-shadow: 0 0 25px #ff69b4, 0 0 45px #48cae4;
+    transform: translateY(-2px);
+}
+
+/* Modal de Resultado Customizado */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 17, 24, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-card {
+    background: rgba(15, 30, 48, 0.95);
+    border: 2px solid #ff1493;
+    border-radius: 28px;
+    padding: 40px 30px;
+    width: 90%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 0 40px #ff1493;
+    animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popUp {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-emoji {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: bounceEmoji 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes bounceEmoji {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+.modal-card h2 {
+    margin-bottom: 10px;
+}
+
+.modal-card p {
+    font-size: 1.05rem;
+    margin-bottom: 25px;
+}
