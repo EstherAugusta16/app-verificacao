@@ -1,4 +1,4 @@
-** {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -37,6 +37,34 @@ body {
 @keyframes twinkle {
     0%, 100% { opacity: 0.2; transform: scale(0.8); }
     50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px #48cae4, 0 0 20px #ff69b4; }
+}
+
+/* --- CHUVA DE MALETAS COR DE ROSA NO FUNDO --- */
+.falling-briefcase {
+    position: absolute;
+    top: -50px;
+    z-index: 1;
+    pointer-events: none;
+    /* Deixa a maleta com tom cor-de-rosa brilhante */
+    filter: drop-shadow(0 0 8px #ff1493) hue-rotate(290deg);
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.95;
+    }
+    85% {
+        opacity: 0.95;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 /* Telas (Navegação) */
@@ -160,7 +188,7 @@ input:focus {
 
 .neon-btn:hover {
     background: linear-gradient(135deg, #ff69b4, #0077b6);
-    box-shadow: 0 0 25px #ff69b4, 0 0 45px #48cae4;
+    box-shadow: 0 0 25px #ff1493, 0 0 45px #48cae4;
     transform: translateY(-2px);
 }
 
