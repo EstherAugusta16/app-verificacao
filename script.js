@@ -30,4 +30,55 @@ document.addEventListener("DOMContentLoaded", () => {
         
         glitterBg.appendChild(briefcase);
     }
+
+    // --- CORREÇÃO DA NAVEGAÇÃO E FLUXO DE TELAS ---
+    const introScreen = document.getElementById("introScreen");
+    const formScreen = document.getElementById("formScreen");
+    const startBtn = document.getElementById("startBtn");
+    const vagaForm = document.getElementById("vagaForm");
+    const resultModal = document.getElementById("resultModal");
+    const restartBtn = document.getElementById("restartBtn");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMessage = document.getElementById("modalMessage");
+    const modalEmoji = document.getElementById("modalEmoji");
+
+    // 1. Ao clicar no botão da tela inicial, esconde a intro e mostra o formulário
+    if (startBtn) {
+        startBtn.addEventListener("click", () => {
+            introScreen.classList.remove("active");
+            formScreen.classList.add("active");
+        });
+    }
+
+    // 2. Ao enviar o formulário, valida os dados e exibe o modal de resultado
+    if (vagaForm) {
+        vagaForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const nome = document.getElementById("nome").value;
+            const idade = parseInt(document.getElementById("idade").value);
+
+            // Exemplo de regra de elegibilidade
+            if (idade >= 18) {
+                modalEmoji.textContent = "💖✨";
+                modalTitle.textContent = `Parabéns, ${nome}!`;
+                modalMessage.textContent = "Você é totalmente elegível para brilhar na nossa liderança!";
+            } else {
+                modalEmoji.textContent = "💡";
+                modalTitle.textContent = `Quase lá, ${nome}!`;
+                modalMessage.textContent = "Continue se desenvolvendo para futuras oportunidades!";
+            }
+
+            resultModal.classList.remove("hidden");
+        });
+    }
+
+    // 3. Botão para reiniciar / fechar modal e voltar ao início
+    if (restartBtn) {
+        restartBtn.addEventListener("click", () => {
+            resultModal.classList.add("hidden");
+            formScreen.classList.remove("active");
+            introScreen.classList.add("active");
+            vagaForm.reset();
+        });
+    }
 });
